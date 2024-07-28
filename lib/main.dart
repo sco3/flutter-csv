@@ -39,7 +39,10 @@ class _MyHomePageState extends State<MyHomePage> {
     // Use the stream to read, decode, and parse the CSV data
     final fields = await input
         .transform(utf8.decoder)
-        .transform(const CsvToListConverter(eol: "\n", fieldDelimiter: ","))
+        .transform(const CsvToListConverter(
+          eol: "\n",
+          fieldDelimiter: ",",
+        ))
         .toList();
 
     return fields;
@@ -95,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text(_file),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Expanded(
               child: SingleChildScrollView(
                 child: TextField(
