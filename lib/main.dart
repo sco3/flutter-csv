@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         _txt.text = txt;
       });
-        }
+    }
   }
 
   @override
