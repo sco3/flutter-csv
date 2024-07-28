@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -59,25 +58,16 @@ class _MyHomePageState extends State<MyHomePage> {
         _file = file.name;
       });
       Uint8List? bytes = file.bytes;
-      if (bytes == null) {
-        String path = file.path ?? '';
-        if (path.isNotEmpty) {
-          File filepath = File(path);
-          bytes = await filepath.readAsBytes();
-        }
+      List<List> data = await parseCsvFile(bytes);
+      String txt = "";
+      for (List row in data) {
+        txt += '$row\n';
       }
-      if (bytes != null) {
-        List<List> data = await parseCsvFile(bytes);
-        String txt = "";
-        for (List row in data) {
-          txt += '$row\n';
-        }
 
-        setState(() {
-          _txt.text = txt;
-        });
-      }
-    }
+      setState(() {
+        _txt.text = txt;
+      });
+        }
   }
 
   @override
